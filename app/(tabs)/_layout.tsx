@@ -1,35 +1,79 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+	return (
+		<Tabs
+			screenOptions={{
+				headerShown: false,
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+				tabBarStyle: {
+					height: 88,
+					paddingTop: 10,
+					paddingBottom: 10,
+					borderTopWidth: 1,
+					borderTopColor: "#E5E7EB",
+					backgroundColor: "#FFFFFF",
+				},
+
+				tabBarActiveTintColor: "#2563EB",
+
+				tabBarInactiveTintColor: "#94A3B8",
+
+				tabBarLabelStyle: {
+					fontSize: 12,
+					fontWeight: "600",
+				},
+			}}>
+			{/* Przeglądaj */}
+			<Tabs.Screen
+				name='index'
+				options={{
+					title: "Przeglądaj",
+
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name='search' size={size} color={color} />
+					),
+				}}
+			/>
+
+			{/* Dodaj zlecenie */}
+			<Tabs.Screen
+				name='post'
+				options={{
+					title: "Dodaj",
+
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name='add-circle' size={size} color={color} />
+					),
+				}}
+			/>
+
+			{/* Moje zlecenia */}
+			<Tabs.Screen
+				name='my-jobs'
+				options={{
+					title: "Moje",
+
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name='briefcase' size={size} color={color} />
+					),
+				}}
+			/>
+
+			{/* Profil */}
+			<Tabs.Screen
+				name='profile'
+				options={{
+					title: "Profil",
+
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name='person' size={size} color={color} />
+					),
+				}}
+			/>
+		</Tabs>
+	);
 }
