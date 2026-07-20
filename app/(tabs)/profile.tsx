@@ -36,6 +36,13 @@ export default function ProfileScreen() {
           >
             <Text style={styles.editButtonText}>Edytuj profil</Text>
           </Pressable>
+
+          <Pressable
+            style={styles.logoutButton}
+            onPress={() => router.replace("/welcome")}
+          >
+            <Text style={styles.logoutButtonText}>Wyloguj</Text>
+          </Pressable>
         </View>
 
         <View style={styles.statsContainer}>
@@ -135,6 +142,20 @@ const styles = StyleSheet.create({
   },
   editButtonText: {
     color: "white",
+    fontWeight: "700",
+    fontSize: 14,
+  },
+  logoutButton: {
+    marginTop: 12,
+    backgroundColor: "white",
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+  },
+  logoutButtonText: {
+    color: "#EF4444",
     fontWeight: "700",
     fontSize: 14,
   },
