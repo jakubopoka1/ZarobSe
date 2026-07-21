@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
 import User from "../models/User";
 
 export const register = async (req: Request, res: Response) => {
@@ -49,7 +50,18 @@ export const login = async (req: Request, res: Response) => {
     });
   }
 
+  const token = jwt.sign(
+    {
+      userId: user._id,
+    },
+    process.env.JWT_SECRET as string,
+    {
+      expiresIn: "7d",
+    },
+  );
+
   res.status(200).json({
     message: "Logowanie poprawne!",
+    token,
   });
 };
